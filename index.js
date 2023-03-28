@@ -1,25 +1,24 @@
 import express from 'express';
-import cors from 'cors';
-import responseDelay from './middlewares/responseDelay.js';
-// Data
-import team from './data/team.json' assert { type: "json" };
 
+import expressConfig from './config/express-config.js';
+import { configEnv } from './config/config.js';
+import dbConfig from './config/mongoose-config.js';
 
-const PORT = process.env.PORT || 5000;
+import { requestLogger } from './middlewares/requestLogгer.js';
+
+const env = process.env.NODE_ENV || 'development';
+const config = configEnv[env];
+
 const server = express();
 
-// Server config
-server.use(cors());
-server.use(responseDelay);
+expressConfig(server);
 
+server.use(requestLogger);
 
-
-server.get('/team', (req, res) => {
-    res.json(team);
-});
-
-
-
-server.listen(PORT, () => {
-    console.log(`Server is listening on: http://localhost:${PORT}`)
-});
+dbConfig(config.DB_CONNECTION_STRING)
+    .then(() => {
+        server.listen(config.PORT, () => { console.log(`Server is listening on PORT: http://localhost:${config.PORT}`) });
+    })
+    .catch(err => {
+        console.log('DB CONNECTION ERROR: ', err);
+    });
