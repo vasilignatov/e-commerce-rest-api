@@ -6,45 +6,5 @@
         "amount": 25,
         "category": "shoes",
         "description": ""
-    },
-    {
-        "id": "",
-        "title": "",
-        "price": 25.99,
-        "amount": 25,
-        "category": "shoes",
-        "description": ""
-    },
-    {
-        "id": "",
-        "title": "",
-        "price": 25.99,
-        "amount": 25,
-        "category": "shoes",
-        "description": ""
-    },
-    {
-        "id": "",
-        "title": "",
-        "price": 25.99,
-        "amount": 25,
-        "category": "shoes",
-        "description": ""
-    },
-    {
-        "id": "",
-        "title": "",
-        "price": 25.99,
-        "amount": 25,
-        "category": "shoes",
-        "description": ""
-    },
-    {
-        "id": "",
-        "title": "",
-        "price": 25.99,
-        "amount": 25,
-        "category": "shoes",
-        "description": ""
-    },
+    }
 ]
