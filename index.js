@@ -12,8 +12,8 @@ const config = configEnv[env];
 const server = express();
 
 expressConfig(server);
-
 server.use(requestLogger);
+
 
 dbConfig(config.DB_CONNECTION_STRING)
     .then(() => {

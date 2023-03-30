@@ -9,7 +9,7 @@ const productSchema = new mongoose.Schema({
     },
     sex: {
         type: String,
-        enum: ['man', 'woman']
+        enum: ['male', 'female']
     },
     category: {
         type: String,
@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema({
         enum: ['XS', 'S', 'M', 'L', 'XL', 'XXL']
     },
     description: String,
-    imageURLs: [String]
+    images: [String]
 });
 
 const Product = mongoose.model('Product', productSchema);
