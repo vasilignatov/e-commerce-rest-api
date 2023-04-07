@@ -20,8 +20,12 @@ const productSchema = new mongoose.Schema({
         enum: ['jackets', 'shirts', 't-shirts', 'jackets', '']
     },
     sizesAvailable: {
-        type: [String],
-        enum: ['XS', 'S', 'M', 'L', 'XL', 'XXL']
+        'XS': Boolean, 
+        'S': Boolean, 
+        'M': Boolean, 
+        'L': Boolean, 
+        'XL': Boolean, 
+        'XXL': Boolean
     },
     description: String,
     images: [String]

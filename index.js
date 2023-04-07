@@ -4,15 +4,12 @@ import expressConfig from './config/express-config.js';
 import { configEnv } from './config/config.js';
 import dbConfig from './config/mongoose-config.js';
 
-import { requestLogger } from './middlewares/requestLogгer.js';
-
 const env = process.env.NODE_ENV || 'development';
 const config = configEnv[env];
 
 const server = express();
 
 expressConfig(server);
-server.use(requestLogger);
 
 
 dbConfig(config.DB_CONNECTION_STRING)
