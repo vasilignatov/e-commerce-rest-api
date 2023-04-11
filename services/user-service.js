@@ -1,18 +1,18 @@
 import User from '../models/User.js';
-import jwt from '../utils/jwtUtils.js';
+import * as jwt from '../utils/jwtUtils.js';
 import { JWT_SECRET } from '../constants.js';
 
 export const register = (userData) => User.create({ ...userData, role: 'user' });
 
-export const login = ({ username, password }) => {
-    const user = User.findOne({ username });
+export const login = async ({ email, password }) => {
+    const user = await User.findOne({ email });
 
     if (!user) {
         throw { message: 'Wrong username or password!' }
     }
 
     try {
-        let isValid = await User.validatePassword(password);
+        let isValid = await user.validatePassword(password);
 
         if (isValid) {
             let payload = {
@@ -21,7 +21,7 @@ export const login = ({ username, password }) => {
                 username: user.username,
                 role: user.role
             }
-
+            
             let token = await jwt.sign(payload, JWT_SECRET);
 
             return { user, token }
