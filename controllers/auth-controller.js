@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import * as authService from '../services/user-service.js';
+import { COOKIE_NAME } from '../constants.js';
 
 const router = Router();
-
 
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
@@ -21,9 +21,10 @@ router.post('/login', async (req, res) => {
         });
 
     } catch (err) {
+        console.log(err)
         res.json({
             type: 'error',
-            message: 'Login error: ' + err
+            message: 'Login error: ' + err.message
         })
     }
 });
@@ -50,9 +51,16 @@ router.post('/register', async (req, res) => {
         console.log('Register error: ', err);
         res.json({
             type: 'error',
-            message: 'Register error: ' + err
+            message: 'Register error: ' + err.message
         });
     }
+});
+
+
+router.post('/logout', (req, res) => {
+    res.clearCookie(COOKIE_NAME);
+    
+    res.json({ok: true});
 });
 
 export default router;
