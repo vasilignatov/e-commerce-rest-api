@@ -35,7 +35,7 @@ router.get('/:id', async (req, res) => {
         res.json(product);
     } catch (error) {
         res
-            .statusCode(500)
+            .status(500)
             .json({ error });
     }
 });
