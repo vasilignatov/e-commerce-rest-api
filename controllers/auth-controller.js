@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import * as authService from '../services/user-service.js';
-import { COOKIE_NAME } from '../constants.js';
+// import { COOKIE_NAME } from '../constants.js';
 
 const router = Router();
 
@@ -9,8 +9,7 @@ router.post('/login', async (req, res) => {
 
     try {
         const { user, token } = await authService.login({ email, password });
-
-        res.cookie(COOKIE_NAME, token);
+        // res.cookie(COOKIE_NAME, token);
 
         res.json({
             _id: user._id,
@@ -37,7 +36,7 @@ router.post('/register', async (req, res) => {
 
         const { user, token } = await authService.login({ email, password });
 
-        res.cookie(COOKIE_NAME, token);
+        // res.cookie(COOKIE_NAME, token);
 
         res.json({
             _id: user._id,
@@ -57,8 +56,9 @@ router.post('/register', async (req, res) => {
 });
 
 
-router.post('/logout', (req, res) => {
-    res.clearCookie(COOKIE_NAME);
+router.post('/logout', (req, res) => {  
+    console.log(req.headers);
+    // res.clearCookie(COOKIE_NAME);
     
     res.json({ok: true});
 });
