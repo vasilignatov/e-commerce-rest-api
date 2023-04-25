@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
-
+    console.log('REQ Body: ', req.body);
     try {
         await authService.register({ username, email, password });
 
@@ -57,8 +57,6 @@ router.post('/register', async (req, res) => {
 
 
 router.post('/logout', (req, res) => {  
-    console.log(req.headers);
-    // res.clearCookie(COOKIE_NAME);
     
     res.json({ok: true});
 });

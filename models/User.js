@@ -6,7 +6,11 @@ const userSchema = new mongoose.Schema({
     username: String,
     email: String,
     password: String,
-    role: String
+    role: String,
+    whishlist: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    }]
 });
 
 userSchema.pre('save', function (next) {
