@@ -23,14 +23,14 @@ router.post('/login', async (req, res) => {
         console.log(err)
         res.json({
             type: 'error',
-            message: 'Login error: ' + err.message
+            message: err.message
         })
     }
 });
 
 router.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
-    console.log('REQ Body: ', req.body);
+    
     try {
         await authService.register({ username, email, password });
 
@@ -50,7 +50,7 @@ router.post('/register', async (req, res) => {
         console.log('Register error: ', err);
         res.json({
             type: 'error',
-            message: 'Register error: ' + err.message
+            message: err.message
         });
     }
 });
