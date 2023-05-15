@@ -8,6 +8,7 @@ export async function auth(req, res, next) {
         try {
             const decoded = await jwt.verify(token, JWT_SECRET);
             req.user = decoded;
+            console.log('Decoded: ',decoded);
             return next();
         } catch (error) {
             res.status(401).json({ message: 'You are not authorized!' });
