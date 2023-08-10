@@ -1,4 +1,4 @@
-const router = require('roter');
+const router = require('express').Router();
 const whishlistController = require('../controllers/whishlist.controller')
 
 router.get('/', whishlistController.getWhishlist);
