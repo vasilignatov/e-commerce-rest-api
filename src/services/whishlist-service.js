@@ -1,16 +1,19 @@
-import User from '../models/User.js';
-import Product from '../models/Product.js';
+const User = require('../models/User.js');
+const Product = require('../models/Product.js');
 
-export const getWhishlist = (userId) => {
+// TODO: FIX
+exports.getWhishlist = (userId) => {
     return User
-        .findById(userId);
-        // .populate('whishlist')
-} 
-export const addToWhishlist = async (userId, productId) => {
+    .findById(userId);
+    // .populate('whishlist')
+}
+
+// TODO: FIX
+exports.addToWhishlist = async (userId, productId) => {
     const user = await User.findById(userId);
     const product = await Product.findById(productId);
-    
+
     user.whishlist.push(product);
 
     user.save();
-} 
+}
