@@ -18,9 +18,3 @@ export async function auth(req, res, next) {
     next();
 }
 
-// TODO: Route Guards
-// isAuth
-
-// isGuest
-
-// isAdmin

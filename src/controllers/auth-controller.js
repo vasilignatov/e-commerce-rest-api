@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import * as authService from '../services/user-service.js';
+import * as authService from '../../old/services/user-service.js';
 // import { COOKIE_NAME } from '../constants.js';
 
 const router = Router();
