@@ -1,8 +1,4 @@
-import { Router } from 'express';
-import * as authService from '../../old/services/user-service.js';
-// import { COOKIE_NAME } from '../constants.js';
-
-const router = Router();
+const router;
 
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
@@ -54,11 +50,3 @@ router.post('/register', async (req, res) => {
         });
     }
 });
-
-
-router.post('/logout', (req, res) => {  
-    
-    res.json({ok: true});
-});
-
-export default router;
