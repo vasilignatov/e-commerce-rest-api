@@ -1,15 +1,21 @@
 const httpStatus = require('http-status');
-const orderService = require('../services/orders-service.js');
+const ordersService = require('../services/orders-service.js');
 const catchAsync = require('../utils/catchAsync.js');
 
 const getAll = catchAsync(async (req, res) => {
-    const orders = await orderService.getAll();
+    const orders = await ordersService.getAll();
     res.json(orders);
+});
+
+const getOrderById = catchAsync(async (req, res) => {
+    const orderId = req.params.orderId;
+    const order = await ordersService.getOrderById(orderId);
+    res.json(order);
 });
 
 const create = catchAsync(async (req, res) => {
     const { data, userId } = req.body;
-    await orderService.create({ ...data, userId });
+    await ordersService.create({ ...data, userId });
     res
         .status(httpStatus.CREATED)
         .json({ message: httpStatus['201_MESSAGE'] });
@@ -18,5 +24,6 @@ const create = catchAsync(async (req, res) => {
 
 module.exports = {
     getAll,
-    create
+    create,
+    getOrderById
 }
