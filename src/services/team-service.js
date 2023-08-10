@@ -1,5 +1,5 @@
-import Team from '../models/Team.js'
+const Team = require('../models/Team');
 
-export const getTeam = () => Team.find({});
+exports.getTeam = () => Team.find({});
 
-export const createTeam = (data) => Team.create(data);
+exports.createTeam = (data) => Team.create(data);
