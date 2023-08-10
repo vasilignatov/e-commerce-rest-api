@@ -1,8 +1,8 @@
-import Product from '../models/Product.js';
+const Product = require( '../models/Product.js');
 
-export const create = (data) => Product.create(data);
+exports.create = (data) => Product.create(data);
 
-export const getAll = () => Product.find({});
+exports.getAll = () => Product.find({});
 
-export const getById = (id) => Product.findById(id);
+exports.getById = (id) => Product.findById(id);
 
