@@ -17,17 +17,15 @@ const register = catchAsync(async (req, res) => {
 const login = catchAsync(async (req, res) => {
     const { email, password } = req.body;
 
+    console.log(email, password);
     const user = await authService.loginLocal(email, password);
     const tokens = await tokenService.generateAuthTokens(user);
-
     res.json({ user, tokens });
 });
 
 const logout = catchAsync(async (req, res) => {
     await authService.logout(req.body.refreshToken);
-    res
-        .status(httpStatus.NO_CONTENT)
-        .json({ ok: true });
+    res.json({ ok: true });
 });
 
 const refreshTokens = catchAsync(async (req, res) => {
