@@ -54,15 +54,9 @@ const generateAuthTokens = async (user) => {
     await saveToken(refreshToken, user.id, refreshTokenExpires, 'refresh');
 
     return {
-        access: {
-            token: accessToken,
-            expires: accessTokenExpires
-        },
-        refresh: {
-            token: refreshToken,
-            expires: refreshTokenExpires
+            accessToken,
+            refreshToken,
         }
-    }
 }
 
 module.exports = {
