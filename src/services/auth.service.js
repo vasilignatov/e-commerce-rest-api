@@ -5,18 +5,26 @@ const userService = require('./user.service');
 const tokenService = require('./token.service');
 
 const loginLocal = async (email, password) => {
-    const user = await userService.getUserByEmail(email);
-    const isAuthenticated = await user.validatePassword(password);
 
-    if (!user || !isAuthenticated) {
+    const user = await userService.getUserByEmail(email);
+    
+    if (!user) {
         throw new AppError('Wrong username or password', httpStatus.UNAUTHORIZED);
     }
+
+    const isAuthenticated = await user.validatePassword(password);
+    
+    if (!isAuthenticated) {
+        throw new AppError('Wrong username or password', httpStatus.UNAUTHORIZED);
+    }
+    console.log(user);
     return user;
 }
 
 const logout = async (refreshToken) => {
+    console.log(refreshToken);
     const token = await Token.findOne({ token: refreshToken, type: 'refresh', blacklisted: false });
-
+    console.log(token);
     if (!token) {
         throw new AppError(httpStatus[`404_MESSAGE`], httpStatus.NOT_FOUND);
     }
@@ -27,12 +35,12 @@ const refreshAuth = async (refreshToken) => {
     try {
         const refreshTokenDoc = await tokenService.verifyToken(refreshToken, 'refresh');
         const user = await userService.getUserById(refreshTokenDoc.user);
-        console.log('USER: ', user);
-        if(!user) throw new Error();
-        
+
+        if (!user) throw new Error();
+
         await refreshTokenDoc.deleteOne();
         return tokenService.generateAuthTokens(user);
-    } catch(err) {
+    } catch (err) {
         throw new AppError('Place authenticate', httpStatus.UNAUTHORIZED);
     }
 }
