@@ -10,6 +10,7 @@ const getAll = catchAsync(async (req, res) => {
 const getOrderById = catchAsync(async (req, res) => {
     const orderId = req.params.orderId;
     const order = await ordersService.getOrderById(orderId);
+    
     res.json(order);
 });
 
