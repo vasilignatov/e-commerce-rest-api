@@ -17,7 +17,7 @@ const productSchema = new mongoose.Schema({
     },
     subCategory: {
         type: String,
-        enum: ['jackets', 'shirts', 't-shirts', 'jackets', '']
+        enum: ['jackets', 'shirts', 't-shirts', 'pants', 'dresses', 'jeans', 'sweaters', 'skirts']
     },
     sizesAvailable: {
         'XS': Boolean,
