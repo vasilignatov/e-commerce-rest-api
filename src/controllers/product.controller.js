@@ -33,6 +33,7 @@ exports.getLastAdded = catchAsync(async (req, res) => {
 
 exports.getProductsCategoriesInfo = catchAsync(async (req, res) => {
     const products = await productService.getProductsCategoriesInfo();
+    console.log(products);
     res
         .status(httpStatus.OK)
         .json(products);
