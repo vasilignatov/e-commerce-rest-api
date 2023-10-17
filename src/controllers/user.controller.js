@@ -17,7 +17,6 @@ const getUsers = catchAsync(async (req, res) => {
 });
 
 const getUser = catchAsync(async (req, res) => {
-
     const userId = req.params.userId;
 
     if (!mongoose.Types.ObjectId.isValid(userId)) {
@@ -30,19 +29,19 @@ const getUser = catchAsync(async (req, res) => {
         throw new AppError('User not found', httpStatus.NOT_FOUND);
     }
 
-    res.send(user);
+    res.json(user);
 });
 
 const deleteUser = catchAsync(async (req, res) => {
     const user = await userService.deleteUserById(req.params.userId.toString());
-    res.send(user);
+    res.json(user);
 });
 
 const updateUser = catchAsync(async (req, res) => {
     const user = await userService
         .updateUserById(req.params.userId, req.body);
 
-    res.send(user);
+    res.json(user);
 });
 
 module.exports = {
