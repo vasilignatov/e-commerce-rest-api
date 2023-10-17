@@ -17,7 +17,6 @@ const register = catchAsync(async (req, res) => {
 const login = catchAsync(async (req, res) => {
     const { email, password } = req.body;
 
-    console.log(email, password);
     const user = await authService.loginLocal(email, password);
     const tokens = await tokenService.generateAuthTokens(user);
     res.json({ user, tokens });

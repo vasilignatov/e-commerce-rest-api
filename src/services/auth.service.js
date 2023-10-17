@@ -17,14 +17,11 @@ const loginLocal = async (email, password) => {
     if (!isAuthenticated) {
         throw new AppError('Wrong username or password', httpStatus.UNAUTHORIZED);
     }
-    console.log(user);
     return user;
 }
 
 const logout = async (refreshToken) => {
-    console.log(refreshToken);
     const token = await Token.findOne({ token: refreshToken, type: 'refresh', blacklisted: false });
-    console.log(token);
     if (!token) {
         throw new AppError(httpStatus[`404_MESSAGE`], httpStatus.NOT_FOUND);
     }
