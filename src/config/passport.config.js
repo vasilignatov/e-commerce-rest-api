@@ -16,7 +16,7 @@ const verify = async (payload, done) => {
             throw new AppError('Invalid token type', httpStatus.UNAUTHORIZED);
         }
 
-        const user = await User.findById(payload.sub);
+        const user = await User.findById(payload.sub).lean();
 
         if (!user) {
             return done(null, false);
