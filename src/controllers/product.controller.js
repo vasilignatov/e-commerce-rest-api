@@ -1,10 +1,13 @@
 const httpStatus = require('http-status');
-const productService = require('../services/product-service.js');
+const productService = require('../services/product.service.js');
 const catchAsync = require('../utils/catchAsync.js');
 
 
 exports.getProducts = catchAsync(async (req, res) => {
-    const products = await productService.getAll();
+    const {gender, category} = req.query;
+
+    let products = await productService.getProducts(gender, category);
+
     res
         .status(httpStatus.OK)
         .json(products);
@@ -33,7 +36,6 @@ exports.getLastAdded = catchAsync(async (req, res) => {
 
 exports.getProductsCategoriesInfo = catchAsync(async (req, res) => {
     const products = await productService.getProductsCategoriesInfo();
-    console.log(products);
     res
         .status(httpStatus.OK)
         .json(products);
