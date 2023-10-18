@@ -1,5 +1,5 @@
 const express = require('express');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 const cors = require('cors');
@@ -12,7 +12,7 @@ const compression = require('compression');
 function expressConfig(app) {
 
     // set HTTP headers properly
-    app.use(helmet());
+    // app.use(helmet());
 
     // Middleware to enable CORS
     app.use(cors());
