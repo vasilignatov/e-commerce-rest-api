@@ -6,12 +6,20 @@ const tokenService = require('../services/token.service');
 
 const register = catchAsync(async (req, res) => {
     const { email, password, username } = req.body;
-    const user = await userService.createUser({ email, password, username});
+    const user = await userService.createUser({ email, password, username });
     const tokens = await tokenService.generateAuthTokens(user);
 
     res
         .status(httpStatus.CREATED)
-        .json({ user, tokens });
+        .json({
+            tokens,
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                role: user.role
+            }
+        });
 });
 
 const login = catchAsync(async (req, res) => {
@@ -19,7 +27,17 @@ const login = catchAsync(async (req, res) => {
 
     const user = await authService.loginLocal(email, password);
     const tokens = await tokenService.generateAuthTokens(user);
-    res.json({ user, tokens });
+
+    res
+        .json({
+            tokens,
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                role: user.role
+            }
+        });
 });
 
 const logout = catchAsync(async (req, res) => {
