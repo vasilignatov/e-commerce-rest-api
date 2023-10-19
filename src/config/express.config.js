@@ -15,7 +15,9 @@ function expressConfig(app) {
     // app.use(helmet());
 
     // Middleware to enable CORS
-    app.use(cors());
+    app.use(cors({
+        origin: 'https://main--playful-daifuku-0487b1.netlify.app/',
+    }));
 
     // Middleware to parse requests with JSON payloads
     app.use(express.json());
