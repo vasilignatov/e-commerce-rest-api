@@ -55,6 +55,9 @@ userSchema.pre('save', function (next) {
         .then(hash => {
             this.password = hash;
             return next();
+        })
+        .catch(err => {
+            console.log(err);
         });
 });
 
