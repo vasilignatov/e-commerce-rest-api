@@ -10,6 +10,11 @@ const orderController = require('./order.route');
 const whishlistController = require('./whishlist.route');
 const AppError = require('../utils/AppError');
 
+router.use((req, res, next) => {
+    console.log(req.method, ' -> ', req.url);
+    next();
+});
+
 router.use('/users', userController);
 router.use('/auth', authController);
 router.use('/team', teamController);
