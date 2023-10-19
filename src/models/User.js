@@ -51,7 +51,8 @@ userSchema.statics.isEmailTaken = async function (email) {
 
 
 userSchema.pre('save', function (next) {
-    bcrypt.hash(this.password, config.SALT_ROUNDS)
+    console.log(typeof config.SALT_ROUNDS);
+    bcrypt.hash(this.password, Number(config.SALT_ROUNDS))
         .then(hash => {
             this.password = hash;
             return next();
